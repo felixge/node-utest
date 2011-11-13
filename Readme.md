@@ -2,6 +2,11 @@
 
 The minimal unit testing library.
 
+## Why yet another test library?
+
+I wanted something simple, that just does unit tests (no async) and nothing
+else. And each test is supposed to be a standalone UNIX program. Now it exists.
+
 ## Usage
 
 Running a test with utest is very simple:
