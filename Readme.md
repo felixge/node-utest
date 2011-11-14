@@ -56,6 +56,15 @@ test('Date', {
 });
 ```
 
+## Future Features
+
+I want to keep this library as minimal as possible, but I do consider the
+addition of the following features:
+
+* TAP output (if TAB=1 in the environment, switch to TapReporter class)
+* Leak detection (automatically add a final test that fails if there are global
+  leaks).
+
 ## License
 
 This module is licensed under the MIT license.
