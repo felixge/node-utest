@@ -12,7 +12,7 @@ var EventEmitter = require('events').EventEmitter;
     write: function(chunk) {
       stdout += chunk;
     },
-  }
+  };
 
   var testCase = {name: 'MyTestCase'};
   var test     = 'is awesome';
