@@ -51,7 +51,7 @@ test('Date', {
   },
 
   'can be coerced into a number': function() {
-    assert.equal(+this.date, 'number');
+    assert.equal(typeof +this.date, 'number');
   },
 });
 ```
