@@ -11,8 +11,10 @@ test is a standalone UNIX program. Now it exists.
 
 ## How do I run async tests?
 
-Currently there is only one sane way: Use one file per test. If that becomes
-an issue, you should write more unit tests.
+Currently there is only one sane way: Do not use a framework. Instead use one
+file per test.
+
+If that becomes an issue, you should write more unit tests.
 
 ## Install
 
