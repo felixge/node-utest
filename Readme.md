@@ -6,8 +6,13 @@ The minimal unit testing library.
 
 ## Why yet another test library?
 
-I wanted something simple, that just does unit tests (no async) and nothing
-else. And each test is supposed to be a standalone UNIX program. Now it exists.
+I wanted something simple, that just does unit tests (no async) and where each
+test is a standalone UNIX program. Now it exists.
+
+## How do I run async tests?
+
+Currently there is only one sane way: Use one file per test. If that becomes
+an issue, you should write more unit tests.
 
 ## Install
 
