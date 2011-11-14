@@ -14,7 +14,8 @@ test is a standalone UNIX program. Now it exists.
 Currently there is only one sane way: Do not use a framework. Instead use one
 file per test.
 
-If that becomes an issue, you should write more unit tests.
+If that becomes an issue, you should write more unit tests. (It is not a unit
+test if it does I/O).
 
 ## Install
 
