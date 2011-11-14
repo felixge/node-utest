@@ -1,5 +1,7 @@
 # utest
 
+[![Build Status](https://secure.travis-ci.org/felixge/node-utest.png)](http://travis-ci.org/felixge/node-utest)
+
 The minimal unit testing library.
 
 ## Why yet another test library?
