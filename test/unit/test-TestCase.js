@@ -59,8 +59,13 @@ var TestCase = require('../../lib/TestCase');
       this.foo = 'bar';
     },
 
+    after: function() {
+      assert.deepEqual(this, {foo: false});
+    },
+
     a: function() {
       assert.deepEqual(this, {foo: 'bar'});
+      this.foo = false;
       aCalled = true;
     },
   }});
