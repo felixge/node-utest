@@ -3,7 +3,7 @@
   "name": "utest",
   "description": "The minimal unit testing library.",
   "homepage": "https://github.com/felixge/node-utest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "url": ""
   },
