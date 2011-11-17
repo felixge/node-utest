@@ -74,3 +74,31 @@ var TestCase = require('../../lib/TestCase');
 
   assert.ok(aCalled);
 })();
+
+(function testErrorInOneTestDoesNotAffectOthers() {
+  var test = new TestCase({tests: {
+    a: function() {
+      assert.equal(2, 1);
+    },
+    b: function() {
+      assert.equal(1, 1);
+    },
+  }});
+
+  var fail = [];
+  var pass = [];
+
+  test
+    .on('pass', function(name) {
+      pass.push(name);
+    })
+    .on('fail', function(name, err) {
+      fail.push(name);
+    });
+
+
+  test.run();
+
+  assert.deepEqual(pass, ['b']);
+  assert.deepEqual(fail, ['a']);
+})();
