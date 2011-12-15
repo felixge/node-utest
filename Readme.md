@@ -77,6 +77,8 @@ test('Date', {
 I want to keep this library as minimal as possible, but I do consider the
 addition of the following features:
 
+* ! operator to select tests to run
+* Nested test cases
 * TAP output (if TAP=1 in the environment, switch to TapReporter class)
 * Leak detection (automatically add a final test that fails if there are global
   leaks).
