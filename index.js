@@ -9,6 +9,8 @@ function utest(name, tests) {
   if (!collection) {
     collection = new utest.Collection();
     reporter   = new utest.BashReporter({collection: collection});
+
+    process.nextTick(collection.run.bind(collection));
   }
 
   var testCase = new utest.TestCase({name: name, tests: tests});

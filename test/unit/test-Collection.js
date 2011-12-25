@@ -20,13 +20,15 @@ var TestCase = require('../../lib/TestCase');
 
   var collection = new Collection();
 
+  collection.add(caseA);
+  collection.add(caseB);
+
   var pass = [];
   collection.on('pass', function(testCase, name) {
     pass.push(testCase.name + ':' + name);
   });
 
-  collection.add(caseA);
-  collection.add(caseB);
+  collection.run();
 
   assert.deepEqual(pass, ['a:1', 'a:2', 'b:3', 'b:4']);
 
@@ -46,13 +48,14 @@ var TestCase = require('../../lib/TestCase');
   });
 
   var collection = new Collection();
+  collection.add(testCase);
 
   var fail = [];
   collection.on('fail', function(testCase, name, error) {
     fail.push({testCase: testCase, name: name, error: error});
   });
 
-  collection.add(testCase);
+  collection.run();
 
   assert.equal(fail.length, 1);
   assert.equal(fail[0].testCase, testCase);

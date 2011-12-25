@@ -46,7 +46,7 @@ test('Number#toFixed', {
 });
 ```
 
-The only additional feature is running a before/after method:
+It is also possible to define a before/after method:
 
 ```js
 var test   = require('utest');
@@ -72,12 +72,30 @@ test('Date', {
 });
 ```
 
+Last but not least, you can run individual tests by prefixing them with an
+exclamation mark. This is useful when putting debug statements into the subject
+under test:
+
+```js
+var test   = require('utest');
+var assert = require('assert');
+
+test('MyTest', {
+  '!will be executed': function() {
+    // ...
+  },
+
+  'will not be exectuted': function() {
+    // ...
+  },
+});
+```
+
 ## Future Features
 
 I want to keep this library as minimal as possible, but I do consider the
 addition of the following features:
 
-* ! operator to select tests to run
 * Nested test cases
 * TAP output (if TAP=1 in the environment, switch to TapReporter class)
 * Leak detection (automatically add a final test that fails if there are global
