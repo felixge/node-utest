@@ -72,6 +72,29 @@ test('Date', {
 });
 ```
 
+You can attach test run to the object event. For this case you must supply
+object and event name between test case name and test list. For example,
+you can get one test case passed and then run another test case:
+
+```js
+var test   = require('utest');
+var assert = require('assert');
+
+var t = test('MyTest', {
+  'check': function() {
+    // ...
+  }
+});
+
+test('MyControlledTest', t, 'pass', {
+  'check': function() {
+    // ...
+  }
+});
+
+```
+
+
 Last but not least, you can run individual tests by prefixing them with an
 exclamation mark. This is useful when putting debug statements into the subject
 under test:
