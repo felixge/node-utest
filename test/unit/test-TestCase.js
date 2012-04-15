@@ -102,3 +102,67 @@ var TestCase = require('../../lib/TestCase');
   assert.deepEqual(pass, ['b']);
   assert.deepEqual(fail, ['a']);
 })();
+
+(function testErrorInTestStillCallsAfter() {
+  var called = false;
+  var test = new TestCase({tests: {
+    after: function () {
+      called = true;
+    },
+    a: function() {
+      throw new Error();
+    }
+  }});
+
+  test.run();
+
+  assert(called);
+})();
+
+(function testErrorInAfterFailsTest() {
+  var test = new TestCase({tests: {
+    after: function () {
+      throw new Error();
+    },
+    a: function() {},
+    b: function() {}
+  }});
+
+  var fail = [];
+  var pass = [];
+
+  test
+    .on('pass', function(name) {
+      pass.push(name);
+    })
+    .on('fail', function(name, err) {
+      fail.push(name);
+    });
+
+
+  test.run();
+
+  assert.deepEqual(pass, []);
+  assert.deepEqual(fail, ['a', 'b']);
+})();
+
+(function testErrorInAfterDoesNotHideTestError() {
+  var test = new TestCase({tests: {
+    after: function () {
+      throw new Error('after');
+    },
+    a: function() {
+      throw new Error('test');
+    }
+  }});
+
+  var err;
+
+  test.on('fail', function(name, _err) {
+    err = _err;
+  });
+
+  test.run();
+
+  assert.equal(err.message, 'test');
+})();
