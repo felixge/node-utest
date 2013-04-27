@@ -67,3 +67,59 @@ var TestCase = require('../../lib/TestCase');
   assert.equal(stats.fail, 1);
   assert.ok(stats.duration >= 0);
 })();
+
+(function testEmitCompleteTestCase() {
+  var testCase = new TestCase({
+    tests: {
+      'good test': function() {
+      },
+      'bad test': function() {
+        throw new Error('failure');
+      }
+    },
+  });
+
+  var collection = new Collection();
+  collection.add(testCase);
+
+  var stats;
+  collection.on('complete', function(arg) {
+    stats = arg;
+  });
+
+  collection.run();
+
+  assert.equal(stats.pass, 1);
+  assert.equal(stats.fail, 1);
+  assert.ok(stats.duration >= 0);
+})();
+
+(function testEmitRunTestCase() {
+  var testCase1 = new TestCase({
+    tests: {
+      'good test': function() {}
+    },
+  });
+  var testCase2 = new TestCase({
+    tests: {
+      'bad test': function() {
+        throw new Error('failure');
+      }
+    },
+  });
+
+  var collection = new Collection();
+  collection.add(testCase1);
+  collection.add(testCase2);
+
+  var runs = [];
+  collection.on('run', function(testCase) {
+    runs.push(testCase);
+  });
+
+  collection.run();
+
+  assert.equal(runs.length, 2);
+  assert.strictEqual(runs[0], testCase1);
+  assert.strictEqual(runs[1], testCase2);
+})();
